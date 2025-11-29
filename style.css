@@ -74,3 +74,47 @@ li {
 #magenta {
     background-color: magenta;
 }
+
+#toolBar {
+    width: 100px;
+    height: 250px;
+    position: absolute;
+    left: 30px;
+    top: 100px;
+    flex-direction: column;
+   }
+   
+#clear{
+    height: 50px;
+    width: 50px;
+    border-radius: 0%;
+    background-color: rgba(255, 235, 205, 0);
+    background-image: url(./img/delete.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+} 
+
+#eraser{
+    height: 40px;
+    width: 50px;
+    border-radius: 0%;
+    background-color: rgba(255, 235, 205, 0);
+    background-image: url(./img/clear.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#thinLine{
+   height: 8px;
+}
+
+#midline{
+   height: 15px;
+}
+
+#thickLine{
+   height: 40px;
+    border-radius: 50%;
+}
