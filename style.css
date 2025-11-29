@@ -118,3 +118,23 @@ li {
    height: 40px;
     border-radius: 50%;
 }
+
+a {
+    all: unset;
+    background-color: rgb(26, 212, 212);
+    height: 20px;
+    width: 150px;
+    border-radius: 9px;
+    margin: 8px auto;
+    padding: 5px;
+}
+    
+a:hover {
+    all: unset;
+    background-color: rgb(220, 243, 11);
+    height: 25px;
+    width: 155px;
+    border-radius: 9px;
+    margin: 8px auto;
+    padding: 5px;
+}

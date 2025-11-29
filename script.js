@@ -10,69 +10,76 @@ colors[5] = document.getElementById("magenta");
 
 const list = document.getElementById("list");
 const toolBar = document.getElementById("toolBar");
-let targetColor = '#000';
+const link = document.getElementById("link");
+let targetColor = "#000";
 let lineSize = 5;
 
 const canvas = document.getElementById("canvas");
 const canvasContext = canvas.getContext("2d");
 
-
 function getColor(event) {
-
-    if (event.target.tagName == "LI") { // если нажимаем на элемент списка-цвет
-        targetColor = getTargetColor(event.target.id) // выбираем цвет для рисования
-        console.log(targetColor)
-        for (i of colors) { //перебираем каждый элемент списка цветов
-            i.style.height = "50px";
-            i.style.width = "50px";
-        }
-        event.target.style.height = '60px';
-        event.target.style.width = '60px';
+  if (event.target.tagName == "LI") {
+    // если нажимаем на элемент списка-цвет
+    targetColor = getTargetColor(event.target.id); // выбираем цвет для рисования
+    console.log(targetColor);
+    for (i of colors) {
+      //перебираем каждый элемент списка цветов
+      i.style.height = "50px";
+      i.style.width = "50px";
     }
+    event.target.style.height = "60px";
+    event.target.style.width = "60px";
+  }
+}
 
+function download(event) {
+  let dataURL = canvas.toDataURL("image/png");
+  link.download = "canvas-image.png";
+  link.href = dataURL;
+  link.click();
 }
 
 function getTools(event) {
-
-    if (event.target.tagName == "LI") { // если нажимаем на элемент списка
-        if (event.target.id == "clear") {
-            canvasContext.clearRect(0, 0, canvas.width, canvas.height)
-        } else if (event.target.id == "eraser") {
-            targetColor = '#ffffffff';
-        } else if (event.target.id == "thinLine") {
-                lineSize = 5;
-        } else if (event.target.id == "midline") {
-                lineSize = 7;
-        } else if (event.target.id == "thickLine") {
-                lineSize = 9;
-        }
+  if (event.target.tagName == "LI") {
+    // если нажимаем на элемент списка
+    if (event.target.id == "clear") {
+      canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+    } else if (event.target.id == "eraser") {
+      targetColor = "#ffffffff";
+    } else if (event.target.id == "thinLine") {
+      lineSize = 5;
+    } else if (event.target.id == "midline") {
+      lineSize = 7;
+    } else if (event.target.id == "thickLine") {
+      lineSize = 9;
     }
+  }
 }
 
 function getTargetColor(id) {
-    if (id == "red") {
-        return "#f00"
-    } else if (id == "yellow") {
-        return "#ff0"
-    } else if (id == "green") {
-        return "#0f0"
-    } else if (id == "cyan") {
-        return "#0ff"
-    } else if (id == "blue") {
-        return "#00f"
-    } else if (id == "magenta")
-        return "#f0f"
+  if (id == "red") {
+    return "#f00";
+  } else if (id == "yellow") {
+    return "#ff0";
+  } else if (id == "green") {
+    return "#0f0";
+  } else if (id == "cyan") {
+    return "#0ff";
+  } else if (id == "blue") {
+    return "#00f";
+  } else if (id == "magenta") return "#f0f";
 }
 
 function drow(event) {
-    if (event.which == 1) {
-        canvasContext.fillStyle = targetColor;
-        canvasContext.beginPath();
-        canvasContext.arc(event.offsetX, event.offsetY, lineSize, 0, Math.PI * 2);
-        canvasContext.fill();
-    }
+  if (event.which == 1) {
+    canvasContext.fillStyle = targetColor;
+    canvasContext.beginPath();
+    canvasContext.arc(event.offsetX, event.offsetY, lineSize, 0, Math.PI * 2);
+    canvasContext.fill();
+  }
 }
 
 list.addEventListener("click", getColor);
 toolBar.addEventListener("click", getTools);
 canvas.addEventListener("mousemove", drow);
+link.addEventListener("click", download);
