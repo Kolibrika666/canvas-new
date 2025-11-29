@@ -9,6 +9,7 @@ colors[5] = document.getElementById("magenta");
 //console.log(colors)
 
 const list = document.getElementById("list");
+const toolBar = document.getElementById("toolBar");
 let targetColor = '#000';
 let lineSize = 5;
 
@@ -29,6 +30,23 @@ function getColor(event) {
         event.target.style.width = '60px';
     }
 
+}
+
+function getTools(event) {
+
+    if (event.target.tagName == "LI") { // если нажимаем на элемент списка
+        if (event.target.id == "clear") {
+            canvasContext.clearRect(0, 0, canvas.width, canvas.height)
+        } else if (event.target.id == "eraser") {
+            targetColor = '#ffffffff';
+        } else if (event.target.id == "thinLine") {
+                lineSize = 5;
+        } else if (event.target.id == "midline") {
+                lineSize = 7;
+        } else if (event.target.id == "thickLine") {
+                lineSize = 9;
+        }
+    }
 }
 
 function getTargetColor(id) {
@@ -56,4 +74,5 @@ function drow(event) {
 }
 
 list.addEventListener("click", getColor);
+toolBar.addEventListener("click", getTools);
 canvas.addEventListener("mousemove", drow);
